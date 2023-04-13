@@ -1,0 +1,19 @@
+import RPi.GPIO as GPIO
+import time
+
+# Set up GPIO pin
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.OUT)
+
+# Define time periods
+start_time = "0:00"
+end_time = "60:00"
+
+# Loop to change voltage at certain times
+while True:
+    current_time = time.strftime("%H:%M")
+    if current_time >= start_time and current_time <= end_time:
+        GPIO.output(18, GPIO.HIGH)  # Set pin voltage to high
+    else:
+        GPIO.output(18, GPIO.LOW)  # Set pin voltage to low
+    time.sleep(60)  # Wait for 60 seconds before checking again
